@@ -1,17 +1,24 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, Fragment, useContext, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import Button from "./Button";
 import ListPoints from "./ListPoints";
 import LocationContext from "../../context/LocationContext";
 
-const Panel = ({ showInfo, removeLocation }) => {
+const Panel = ({ deployPanel, setDeployPanel, showInfo, removeLocation }) => {
   const locationContext = useContext(LocationContext);
   const { locations } = locationContext;
 
   const [showPanel, setShowPanel] = useState(false);
 
+  useEffect(() => {
+    if(!deployPanel) {
+      setShowPanel(false);
+    }
+  }, [deployPanel]);
+
   const togglePanel = () => {
     var toggle = !showPanel;
+    setDeployPanel(toggle);
     setShowPanel(toggle);
   };
 

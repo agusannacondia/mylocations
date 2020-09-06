@@ -6,6 +6,7 @@ import PointInformation from "./Main/PointInformation";
 import ModalNewPoint from "./Main/ModalNewPoint";
 import LocationContext from "../context/LocationContext";
 import Confetti from "react-dom-confetti";
+import { useMediaQuery } from "react-responsive";
 
 const config = {
   angle: 0,
@@ -22,12 +23,17 @@ const config = {
 };
 
 const Main = () => {
+  const isMobile = useMediaQuery({
+    query: "(max-device-width: 600px)",
+  });
+
   const locationContext = useContext(LocationContext);
   const { addLocation, removeLocation } = locationContext;
 
   const [submited, setSubmited] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [deployPanel, setDeployPanel] = useState(false);
   const [locationSelected, setLocationSelected] = useState(null);
 
   const onMapClick = (location) => {
@@ -37,11 +43,17 @@ const Main = () => {
       setShowInfo(false);
       setSubmited(false);
     }
+    if (isMobile) {
+      setDeployPanel(false);
+    }
   };
 
   const onMarkerClick = (location) => {
     if (showModal) {
       setShowModal(false);
+    }
+    if (isMobile) {
+      setDeployPanel(false);
     }
     setLocationSelected(location);
     setShowInfo(true);
@@ -69,6 +81,9 @@ const Main = () => {
     if (showModal) {
       setShowModal(false);
     }
+    if (isMobile) {
+      setDeployPanel(false);
+    }
     setLocationSelected(location);
     setShowInfo(true);
   };
@@ -86,7 +101,14 @@ const Main = () => {
         onMarkerClick={onMarkerClick}
         showModal={showModal}
       />
-      <Panel showInfo={showInfoPanel} removeLocation={onRemoveClick} />
+      {!showInfo && (
+        <Panel
+          deployPanel={deployPanel}
+          setDeployPanel={setDeployPanel}
+          showInfo={showInfoPanel}
+          removeLocation={onRemoveClick}
+        />
+      )}
       <CSSTransition
         in={showInfo}
         timeout={300}
@@ -107,9 +129,9 @@ const Main = () => {
         config={config}
         style={{
           position: "relative",
-          top: '50%',
+          top: "50%",
           bottom: 0,
-          left: '50%',
+          left: "50%",
           right: 0,
           margin: "auto",
           zIndex: 1,

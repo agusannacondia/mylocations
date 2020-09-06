@@ -17,6 +17,7 @@
     "react-dom": "^16.13.1",
     "react-dom-confetti": "^0.2.0",
     "react-draggable": "^4.4.3",
+    "react-responsive": "^8.1.0",
     "react-scripts": "3.4.3",
     "react-transition-group": "^4.4.1"
   },

@@ -455,3 +455,51 @@ code {
   margin: auto;
   z-index: 1;
 }
+
+@media screen and (max-width : 600px) {
+  
+  .Panel__Container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .Panel__Header {
+    flex-direction: column-reverse;
+  }
+
+  .Panel__Header h2 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .Panel__List > div {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .Point h4 {
+    display: none;
+  }
+
+  .Point {
+    width: 100%;
+  }
+
+  .Point .Button__Info,
+  .Point .Button__Remove {
+    flex-grow: 1;
+    margin: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .Info__Container {
+    width: 95%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin-right: 0px;
+    margin: auto;
+  }
+}
