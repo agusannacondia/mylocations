@@ -461,6 +461,7 @@ code {
   .Panel__Container {
     padding-right: 0px;
     padding-left: 0px;
+    height: 70vh;
   }
 
   .Panel__Header {
@@ -472,9 +473,17 @@ code {
     font-size: 1.2rem;
   }
 
+  .Panel__Header .Button__Quit {
+    background: none;
+  }
+
   .Panel__List > div {
     overflow-x: hidden;
     overflow-y: hidden;
+  }
+
+  .Panel__List p {
+    text-align: center;
   }
 
   .Point h4 {
