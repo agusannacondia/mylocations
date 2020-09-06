@@ -101,7 +101,7 @@ const Main = () => {
         onMarkerClick={onMarkerClick}
         showModal={showModal}
       />
-      {!showInfo && (
+      {(!isMobile || (isMobile && !showInfo)) && (
         <Panel
           deployPanel={deployPanel}
           setDeployPanel={setDeployPanel}
